@@ -46,6 +46,9 @@ public class PlayerController : MonoBehaviour
 
     public int playerNumber;
     GameMaster gameMaster;
+    public bool selected;
+    public bool hasMoved;
+    public GameObject playerCamera;
 
     private void Start()
     {
@@ -53,11 +56,30 @@ public class PlayerController : MonoBehaviour
         collider = GetComponent<CircleCollider2D>();
         extraJumps = extraJumpValue;
         gameMaster = FindObjectOfType<GameMaster>();
+        healtbar.maxValue = GetComponentInChildren<Destructable>().health;
+    }
+
+    private void OnMouseDown()
+    {
+        if(gameMaster.playerTurn == playerNumber && hasMoved == false && gameMaster.playerSelected == false)
+            {
+                if (gameMaster.selectedUnit != null)
+                {
+                    gameMaster.selectedUnit.selected = false;
+                }
+                selected = true;
+                hasMoved = true;
+                gameMaster.selectedUnit = this;
+                playerCamera.active = !playerCamera.active;
+                gameMaster.mainCamera.active = !gameMaster.mainCamera.active;
+                gameMaster.playerSelected = true;
+            }
+        
     }
 
     private void FixedUpdate()
     {
-        if(playerNumber != gameMaster.playerTurn || gameMaster.timeLeft <= 0)
+        if(playerNumber != gameMaster.playerTurn || gameMaster.timeLeft <= 0 || selected == false)
         {
             return;
         }
@@ -69,14 +91,14 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         
-        if (playerNumber != gameMaster.playerTurn || gameMaster.timeLeft <= 0)
+        if (playerNumber != gameMaster.playerTurn || gameMaster.timeLeft <= 0 || selected == false)
         {
             Health();
             return;
         }
+        Jump();
         Health();
         Aim();
-        Jump();
         Shoot();
         Melee();
     }
@@ -214,11 +236,9 @@ public class PlayerController : MonoBehaviour
 
     void Aim()
     {
-        aimInput = Input.GetAxis("Vertical");
+            aimInput = Input.GetAxis("Vertical");
 
             aimPoint.Rotate(0.0f, 0.0f, aimInput * aimSpeed);
-     
-
     }
 
     void Health()

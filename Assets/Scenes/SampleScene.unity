@@ -974,6 +974,11 @@ PrefabInstance:
       propertyPath: playerNumber
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 145004314026050225, guid: e4d30e55f8e53438393dbbee4b9ccaaf,
+        type: 3}
+      propertyPath: selected
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 145004314026050226, guid: e4d30e55f8e53438393dbbee4b9ccaaf,
         type: 3}
       propertyPath: m_Name
@@ -1158,10 +1163,13 @@ MonoBehaviour:
   playerTurn: 1
   timeLeft: 0
   turnTime: 1000
+  unit: {fileID: 0}
   text: {fileID: 2137519598}
   mainCamera: {fileID: 0}
   player1Camera: {fileID: 0}
   player2Camera: {fileID: 0}
+  team1: []
+  team2: []
 --- !u!4 &1558135840
 Transform:
   m_ObjectHideFlags: 0
@@ -1565,6 +1573,16 @@ PrefabInstance:
         type: 3}
       propertyPath: jumpTime
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 145004314026050225, guid: e4d30e55f8e53438393dbbee4b9ccaaf,
+        type: 3}
+      propertyPath: hasMoved
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 145004314026050225, guid: e4d30e55f8e53438393dbbee4b9ccaaf,
+        type: 3}
+      propertyPath: selected
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 145004314026050226, guid: e4d30e55f8e53438393dbbee4b9ccaaf,
         type: 3}

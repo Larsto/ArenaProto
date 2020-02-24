@@ -20,7 +20,7 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Environment"))
+        if(collision.CompareTag("Environment") || collision.CompareTag("Player1") || collision.CompareTag("Player2"))
         {
             Collider2D[] objectsToDamage = Physics2D.OverlapCircleAll(transform.position, areaOfEffect, whatIsDestructible);
             foreach (Collider2D objects in objectsToDamage)
